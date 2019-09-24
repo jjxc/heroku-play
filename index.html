@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .hidden {
+        display: none;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+  </head>
+  <body>
+    <h1>Text Twist Game</h1>
+    <br>
+    <p>Try to unscramble the letters generated and type in the box below.</p>
+    <br>
+    <button id="grabmore">Generate Letters</button>
+    <br>
+    <input type="text" id="userInput" />
+    <br>
+    <button id="showAns">Check Answer</button>
+    <br>
+    <ul id="bingos">
+    </ul>
+  </body>
+  <script>
+    $(document).ready(function(){
+      let checkAnswer = function(racks,userInput) {
+        for(var i=0;i<racks.length;i++){
+          if(racks[i] == userInput.toString()) {
+            return true;
+          } 
+        } 
+        return false;    
+      }
+      
+      let showRacks = function(racks){
+        var userText = document,getElementById("userInput");
+        $("#bingos").html('');
+        racks.map(rack=>{
+          $("#bingos").append(`<li>${rack.rack}: <span class="answer hidden">${rack.words}</span></li>`);
+        });
+        $("#showAns").on("click", function(){
+          if(checkAnswer(racks,userInput)){
+            alert("Correct!");
+          }
+          else {
+            alert("Try Again.");
+          }
+        });
+      }
+      
+      $("#grabmore").on("click", function(){
+        $.ajax({
+            method: "GET",
+            url: "api.php",
+            success: data=>{ showRacks(data)}
+        });
+      });
+    });
+  </script>
+</html>
