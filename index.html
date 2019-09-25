@@ -17,7 +17,9 @@
     <br>
     <input type="text" id="userInput" />
     <br>
-    <button id="showAns">Check Answer</button>
+    <button id="checkAns">Check Answer</button>
+    <br>
+    <button id="showAns">Show Answer</button>
     <br>
     <ul id="bingos">
     </ul>
@@ -39,13 +41,18 @@
         racks.map(rack=>{
           $("#bingos").append(`<li>${rack.rack}: <span class="answer hidden">${rack.words}</span></li>`);
         });
-        $("#showAns").on("click", function(){
+        
+        $("#checkAns").on("click", function(){
           if(checkAnswer(racks,userInput)){
             alert("Correct!");
           }
           else {
             alert("Try Again.");
           }
+        });
+        
+        $("#showAns").on("click", function(){
+          $("#bingos").find(".answer").toggleClass("hidden");
         });
       }
       
