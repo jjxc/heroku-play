@@ -34,7 +34,7 @@
       }
       
       let showRacks = function(racks){
-        var userText = document,getElementById("userInput");
+        var userText = document.getElementById("userInput");
         $("#bingos").html('');
         racks.map(rack=>{
           $("#bingos").append(`<li>${rack.rack}: <span class="answer hidden">${rack.words}</span></li>`);
