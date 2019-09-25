@@ -15,7 +15,7 @@
     <br>
     <button id="grabmore">Generate Letters</button>
     <br>
-    <input type="text" id="userInput" class="search" onkeydown="search(this)" />
+    <input type="text" id="userInput" class="search" onkeypress="search(this)" />
     <br>
     <button id="checkAns">Check Answer</button>
     <br>
@@ -36,7 +36,7 @@
       }
       
       function search(ele) {
-        if (event.key == 'Enter') {
+        if (event.keyCode == 13) {
           alert(ele.value);
         }
       }
