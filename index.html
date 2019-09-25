@@ -15,7 +15,7 @@
     <br>
     <button id="grabmore">Generate Letters</button>
     <br>
-    <input type="text" id="userInput" />
+    <input type="text" id="userInput" class="search" onkeydown="search(this)" />
     <br>
     <button id="checkAns">Check Answer</button>
     <br>
@@ -35,12 +35,19 @@
         return false;    
       }
       
+      function search(ele) {
+        if (event.key == 'Enter') {
+          alert(ele.value);
+        }
+      }
+      
       let showRacks = function(racks){
         var userText = document.getElementById("userInput");
         $("#bingos").html('');
         racks.map(rack=>{
           $("#bingos").append(`<li>${rack.rack}: <span class="answer hidden">${rack.words}</span></li>`);
         });
+        
         
         $("#checkAns").on("click", function(){
           if(checkAnswer(racks,userInput)){
